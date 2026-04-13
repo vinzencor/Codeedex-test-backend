@@ -18,7 +18,7 @@ import auditRoutes from './routes/auditRoutes';
 import teamRoutes from './routes/teamRoutes';
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 // Routes
