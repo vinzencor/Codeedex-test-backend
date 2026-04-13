@@ -28,7 +28,11 @@ app.use('/api/roles', roleRoutes);
 app.use('/api/audit-logs', auditRoutes);
 app.use('/api/teams', teamRoutes);
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start Server only if not running in a Vercel serverless environment
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;
