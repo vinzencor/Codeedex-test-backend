@@ -8,8 +8,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to DB
-connectDB();
+// Connect to DB dynamically per request (Serverless model)
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
